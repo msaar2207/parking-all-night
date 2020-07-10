@@ -1,0 +1,61 @@
+:host {
+  .container {
+    background: #78b052;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .link-wrapper {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 1024px;
+
+      .link-container {
+        display: flex;
+        flex-direction: column;
+        color: white;
+
+        .links {
+          .link {
+            margin: 1rem 0;
+          }
+        }
+
+        .title {
+          font-size: 1.6rem;
+          font-weight: 500;
+          height: 3rem;
+        }
+      }
+    }
+
+    .reference-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .logos {
+        display: flex;
+        align-items: center;
+
+        img {
+          height: 2rem;
+          margin: 0 0.5rem;
+        }
+      }
+    }
+  }
+
+  .copy-rights {
+    background: black;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+}
