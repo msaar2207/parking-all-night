@@ -1,0 +1,71 @@
+<div class="page-container">
+  <div class="booking-summary">
+    <div class="title">Your Reservation</div>
+    <div class="summary">
+      <mat-form-field appearance="outline">
+        <mat-label>Check in Date</mat-label>
+        <input autocomplete="off" (click)="picker1.open()" [formControl]="checkIn" matInput [matDatepicker]="picker1"
+          [min]="nowDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Check Out Date</mat-label>
+        <input autocomplete="off" (click)="picker2.open()" [formControl]="checkOut" [disabled]="!checkIn.value" matInput
+          [matDatepicker]="picker2" [min]="checkIn.value">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      <button mat-stroked-button (click)="updateSelections()">Check Availiblity</button>
+      <div class="title">{{totalSelectedSlots}} Selected Slots</div>
+      <div class="row">
+        <mat-icon *ngFor="let icon of carSlotsSelected">directions_car</mat-icon>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" class="proceed" [disabled]="!totalSelectedSlots">
+      Proceed further
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+  </div>
+  <div class="container">
+    <div class="stepper">
+      <div class="step">1. Choose Date</div>
+      <div class="step is-active">2. Choose Slots</div>
+      <div class="step">3. Login/Signup</div>
+      <div class="step">4. Pay & Proceed</div>
+    </div>
+    <div class="slot-box" *ngFor="let slot of slots; let i = index">
+      <div class="date">
+        {{slot?.date | date:"mediumDate"}}
+      </div>
+      <div class="slots">
+        <div class="slot total">
+          <div class="label">Total</div>
+          <div class="number">{{slot.total || 10}}</div>
+        </div>
+        <div class="slot booked">
+          <div class="label">Booked</div>
+          <div class="number">{{slot.booked || 0}}</div>
+        </div>
+        <div class="slot available">
+          <div class="label">Available</div>
+          <div class="control">
+            <button [disabled]="slot.total == (slot.booked + slot.available)" mat-icon-button (click)="minusBooking(i)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <div class="number">{{slot.available}}</div>
+            <button mat-icon-button [disabled]="slot.available == 0" (click)="addBooking(i)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+</div>

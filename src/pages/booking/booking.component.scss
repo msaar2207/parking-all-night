@@ -1,0 +1,122 @@
+:host {
+  .page-container {
+    display: flex;
+    padding: 2rem;
+
+    .booking-summary {
+      display: flex;
+      flex-direction: column;
+      background: #78b052;
+      height: fit-content;
+      width: 25rem;
+      border-radius: 5px;
+
+      .title {
+        font-size: larger;
+        color: white;
+        border-bottom: solid 1px;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .summary {
+        padding: 2rem;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .proceed {
+        background: black;
+        width: 100%;
+        color: white !important;
+        padding: 0.5rem;
+
+      }
+
+      .proceed[disabled] {
+        background: rgba(0, 0, 0, .12) !important;
+      }
+
+      .dates {}
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      margin-left: 2rem;
+      width: 100%;
+      max-width: 60rem;
+
+      .stepper {
+        border-radius: 5px;
+        background: #78b052;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 2rem;
+        justify-content: space-between;
+
+        .step {
+          padding: 1rem;
+          color: white;
+          font-weight: 500;
+
+          &.is-active {
+            background: #1e4604;
+          }
+        }
+      }
+
+      .slot-box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-bottom: solid 1px #78b052;
+        padding-bottom: 2rem;
+
+        .date {
+          font-weight: 600;
+          font-size: x-large;
+          margin: 1rem 0;
+        }
+
+        .slots {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .slot {
+            border: solid #78b052 1px;
+            padding: 0.5rem;
+            min-width: 6rem;
+            text-align: center;
+            border-radius: 5px;
+
+            .label {}
+
+            .control {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              .number {
+                font-size: larger;
+                font-weight: 600;
+              }
+            }
+          }
+
+          .book-now {
+            background: #78b052;
+            height: 3rem;
+            color: white;
+            width: 7rem;
+          }
+        }
+      }
+    }
+  }
+
+}
