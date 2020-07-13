@@ -1,1 +1,55 @@
-<p>home works!</p>
+<div class="container">
+    <div class="carosel">
+        <div class="overlay"></div>
+        <div class="widget-container">
+            <div class="widget">
+                <mat-icon class="icon">local_gas_station</mat-icon>
+                <div class="fuel">GAS</div>
+                <div class="fuel">Diesel</div>
+            </div>
+            <div class="widget">
+                <mat-icon class="icon">access_time</mat-icon>
+                <div class="fuel">Datetime</div>
+                <div class="fuel">Weather</div>
+            </div>
+        </div>
+        <div class="form">
+            <mat-form-field appearance="outline">
+                <mat-label>Check-In</mat-label>
+                <input autocomplete="off" (click)="picker1.open()" [formControl]="checkIn" matInput [matDatepicker]="picker1"
+                  [min]="nowDate">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Check-Out</mat-label>
+                <input autocomplete="off" (click)="picker2.open()" [formControl]="checkOut" matInput [matDatepicker]="picker2"
+                  [min]="nowDate">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+              <button mat-button-raised class="book-now-btn">Book Now</button>
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="title">Who We Are</div>
+            <div class="text">lksjdflsadjflsajdflksajdf;lkjdsalkfjsadlkfjsa;ldjlkdsaf</div>
+        </div>
+        <div class="card">
+            <div class="title">What We Provide</div>
+            <div class="text">lksjdflsadjflsajdflksajdf;lkjdsalkfjsadlkfjsa;ldjlkdsaf</div>
+        </div>
+        <div class="card">
+            <div class="title">Our Mission</div>
+            <div class="text">lksjdflsadjflsajdflksajdf;lkjdsalkfjsadlkfjsa;ldjlkdsaf</div>
+        </div>
+        
+    </div>
+    
+    <div class="video-container">
+        <div class="text"><span style="font-weight: 900;">PLEASE WATCH</span>this short video that explains how pan works</div>
+        <div class="video"></div>
+    </div>
+</div>
