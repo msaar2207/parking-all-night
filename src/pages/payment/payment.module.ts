@@ -4,6 +4,8 @@ import { PaymentComponent } from '../payment/payment.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { CreditCardDirectivesModule } from 'angular-cc-library';
 
 
 
@@ -13,7 +15,12 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
+
+  ],
+  exports:[
+    PaymentComponent
   ]
 })
 export class PaymentModule { }
