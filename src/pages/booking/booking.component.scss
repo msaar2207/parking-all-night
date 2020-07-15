@@ -1,4 +1,4 @@
-:host {
+app-booking {
   .page-container {
     display: flex;
     padding: 2rem;
@@ -63,12 +63,25 @@
 
       .stepper {
         border-radius: 5px;
-        background: #78b052;
         display: flex;
         align-items: center;
         width: 100%;
         margin-bottom: 2rem;
         justify-content: space-between;
+
+        .mat-tab-header {
+          width: 100%;
+          background: #78b052;
+
+          .mat-tab-labels {
+            display: flex;
+            justify-content: space-around;
+          }
+        }
+
+        .mat-tab-body-wrapper {
+          width: 100%;
+        }
 
         .step {
           padding: 1rem;
