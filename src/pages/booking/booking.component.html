@@ -18,12 +18,20 @@
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
       <button mat-stroked-button (click)="updateSelections()">Check Availiblity</button>
-      <div class="title">{{totalSelectedSlots}} Selected Slots</div>
-      <div class="row">
-        <mat-icon *ngFor="let icon of carSlotsSelected">directions_car</mat-icon>
+      <div class="title row space-between-center" *ngIf="carSlotsSelected.length">
+        <div>Date</div>
+        <div style="margin-left:6rem">Slots</div>
+        <div>Remove</div>
+      </div>
+      <div class="row space-between-center" *ngFor="let slot of carSlotsSelected; let i = index">
+        <div class="date">{{slot.date | date:"mediumDate"}}</div>
+        <div class="selected">{{slot.selected}}</div>
+        <button mat-icon-button (click)="removeSlot(i)">
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
       </div>
     </div>
-    <button mat-raised-button color="primary" class="proceed" [disabled]="!totalSelectedSlots">
+    <button mat-raised-button color="primary" class="proceed" [disabled]="!carSlotsSelected.length">
       Proceed further
       <mat-icon>chevron_right</mat-icon>
     </button>

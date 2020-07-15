@@ -25,6 +25,18 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
+
+        .space-between-center {
+          padding: 1rem;
+
+          .date {
+            font-size: large;
+          }
+
+          .selected {
+            font-size: larger;
+          }
+        }
       }
 
       .proceed {
