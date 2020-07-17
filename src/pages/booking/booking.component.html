@@ -18,51 +18,66 @@
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
       <button mat-stroked-button (click)="updateSelections()">Check Availiblity</button>
-      <div class="title">{{totalSelectedSlots}} Selected Slots</div>
-      <div class="row">
-        <mat-icon *ngFor="let icon of carSlotsSelected">directions_car</mat-icon>
+      <div class="title row space-between-center" *ngIf="carSlotsSelected.length">
+        <div>Date</div>
+        <div style="margin-left:6rem">Slots</div>
+        <div>Remove</div>
+      </div>
+      <div class="scroll-container column">
+        <div class="row space-between-center" *ngFor="let slot of carSlotsSelected; let i = index">
+          <div class="date">{{slot.date | date:"mediumDate"}}</div>
+          <div class="selected">{{slot.selected}}</div>
+          <button mat-icon-button (click)="removeSlot(i)">
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" class="proceed" [disabled]="!totalSelectedSlots">
+    <button mat-raised-button color="primary" class="proceed" (click)="tab.selectedIndex = 2"
+      [disabled]="!carSlotsSelected.length">
       Proceed further
       <mat-icon>chevron_right</mat-icon>
     </button>
 
   </div>
   <div class="container">
-    <div class="stepper">
-      <div class="step">1. Choose Date</div>
-      <div class="step is-active">2. Choose Slots</div>
-      <div class="step">3. Login/Signup</div>
-      <div class="step">4. Pay & Proceed</div>
-    </div>
-    <div class="slot-box" *ngFor="let slot of slots; let i = index">
-      <div class="date">
-        {{slot?.date | date:"mediumDate"}}
-      </div>
-      <div class="slots">
-        <div class="slot total">
-          <div class="label">Total</div>
-          <div class="number">{{slot.total || 10}}</div>
-        </div>
-        <div class="slot booked">
-          <div class="label">Booked</div>
-          <div class="number">{{slot.booked || 0}}</div>
-        </div>
-        <div class="slot available">
-          <div class="label">Available</div>
-          <div class="control">
-            <button [disabled]="slot.total == (slot.booked + slot.available)" mat-icon-button (click)="minusBooking(i)">
-              <mat-icon>remove</mat-icon>
-            </button>
-            <div class="number">{{slot.available}}</div>
-            <button mat-icon-button [disabled]="slot.available == 0" (click)="addBooking(i)">
-              <mat-icon>add</mat-icon>
-            </button>
+    <mat-tab-group #tab class="stepper" [backgroundColor]="'#78b052'">
+      <mat-tab label="1. Choose Date" disabled></mat-tab>
+      <mat-tab label="2. Choose Slots">
+        <div class="slot-box" *ngFor="let slot of slots; let i = index">
+          <div class="date">
+            {{slot?.date | date:"mediumDate"}}
+          </div>
+          <div class="slots">
+            <div class="slot total">
+              <div class="label">Total</div>
+              <div class="number">{{slot.total || 10}}</div>
+            </div>
+            <div class="slot booked">
+              <div class="label">Booked</div>
+              <div class="number">{{slot.booked || 0}}</div>
+            </div>
+            <div class="slot available">
+              <div class="label">Available</div>
+              <div class="control">
+                <button [disabled]="slot.total == (slot.booked + slot.available)" mat-icon-button
+                  (click)="minusBooking(i)">
+                  <mat-icon>remove</mat-icon>
+                </button>
+                <div class="number">{{slot.available}}</div>
+                <button mat-icon-button [disabled]="slot.available == 0" (click)="addBooking(i)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </mat-tab>
+      <mat-tab label="3. Pay & Proceed" disabled>
+        <app-payment [isDisabled]="!carSlotsSelected.length"></app-payment>
+      </mat-tab>
+    </mat-tab-group>
+
   </div>
 </div>
 

@@ -1,0 +1,49 @@
+  <form [formGroup]="ccForm"  class="column center-center payment-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput placeholder="Email">
+      <mat-error *ngIf="ccForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="ccForm.get('email')?.hasError('email')">
+        Email format is incorrect
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Card Number</mat-label>
+      <input type="tel" formControlName="cardNumber" matInput placeholder="Card Number">
+    <mat-error *ngIf="ccForm.get('cardNumber')?.hasError('required')">
+      Card Number is required
+    </mat-error>
+    <mat-error *ngIf="ccForm.get('cardNumber')?.hasError('minlength')">
+      Card Number should be atleast 16 digits
+    </mat-error>
+    <mat-error *ngIf="!ccForm.get('cardNumber')?.hasError('required') && !ccForm.get('cardNumber')?.hasError('minlength') && ccForm.get('cardNumber')?.hasError('ccNumber')">
+      Card Number is invalid
+    </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Name on card</mat-label>
+      <input formControlName="cardName" matInput placeholder="Name on card">
+      <mat-error *ngIf="ccForm.get('cardName')?.hasError('required')">
+        Card holder name is required
+      </mat-error>
+    </mat-form-field>
+    <div class="row space-between-center">
+      <mat-form-field class="expiry" appearance="outline">
+        <mat-label>Expiration Date</mat-label>
+        <input formControlName="expiry" matInput placeholder="MM/YY">
+        <mat-error *ngIf="ccForm.get('expiry')?.hasError('required')">
+          Expiry date is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="cvv" appearance="outline">
+        <mat-label>CVV</mat-label>
+        <input type="tel" formControlName="cvv" matInput placeholder="CVV">
+        <mat-error *ngIf="ccForm.get('cvv')?.hasError('required')">
+          CVV number is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button mat-stroked-button color="primary" class="pay-now-btn" [disabled]="isDisabled" (click)="submit()">Pay Now</button>
+  </form>

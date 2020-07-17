@@ -33,7 +33,21 @@
 
     }
   }
-
+  .fixed {
+    position: absolute;
+    background-color: #78b052 !important;
+    top: 0;
+    z-index: 5;
+    margin-top: 0.90%;
+    align-content: center;
+    color: #fff;
+  }
+  .sticky {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    z-index: 5;
+  }
   .control-toolbar {
     @extend .toolbar;
     background: black;

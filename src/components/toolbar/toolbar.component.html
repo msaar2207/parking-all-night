@@ -8,13 +8,16 @@
   </div>
 </div>
 <div class="marquee">TRAVEL ADVISORY: Our response to COVID-19</div>
-<mat-toolbar class="toolbar" color="primary">
-  <div class="toolbar-content">
-    <img src="assets/images/logo.png" alt="" class="logo">
-    <div class="menu">
-      <span class="menu-item">HOME</span>
-      <span class="menu-item">OFFERS & RATES</span>
-      <span class="menu-item">RESERVATIONS</span>
+<div #stick>
+  <mat-toolbar [class]="'toolbar sticky'" color="primary" >
+    <div class="toolbar-content">
+      <img src="assets/images/logo.png" alt="" class="logo">
+      <div class="menu">
+        <span class="menu-item">HOME</span>
+        <span class="menu-item">OFFERS & RATES</span>
+        <span class="menu-item">RESERVATIONS</span>
+      </div>
     </div>
-  </div>
-</mat-toolbar>
+  </mat-toolbar>
+
+</div>

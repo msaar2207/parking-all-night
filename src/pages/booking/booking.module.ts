@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
+import { PaymentModule } from '../payment/payment.module';
 
 @NgModule({
   declarations: [BookingComponent],
@@ -23,6 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTabsModule,
+    PaymentModule,
     RouterModule.forChild([
       { path: '', component: BookingComponent }
     ])
