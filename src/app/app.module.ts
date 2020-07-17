@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarModule } from 'src/components/toolbar/toolbar.module';
 import { FooterModule } from 'src/components/footer/footer.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FooterModule } from 'src/components/footer/footer.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     ToolbarModule,
-    FooterModule
+    FooterModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

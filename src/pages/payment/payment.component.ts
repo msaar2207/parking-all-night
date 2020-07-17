@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import {
   FormGroup,
   FormBuilder,
@@ -13,6 +13,7 @@ import { CreditCardValidators } from "angular-cc-library";
   styleUrls: ["./payment.component.scss"],
 })
 export class PaymentComponent implements OnInit {
+  @Input() isDisabled = true;
   ccForm: FormGroup = new FormGroup({});
   constructor(private _fb: FormBuilder) {
     this.ccForm = this._fb.group({

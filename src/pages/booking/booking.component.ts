@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatTabGroup } from '@angular/material/tabs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-booking',
@@ -7,7 +9,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./booking.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent implements OnInit, AfterViewInit {
+  @ViewChild('tab', { static: false }) tabs: MatTabGroup;
+
   checkIn = new FormControl();
   checkOut = new FormControl();
   nowDate = new Date();
@@ -18,9 +22,16 @@ export class BookingComponent implements OnInit {
     { available: 1, booked: 9, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 4) },
   ];
   carSlotsSelected = [];
-  constructor() { }
+  constructor(private _router: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this._router.queryParams.subscribe(qp => {
+      this.checkIn.patchValue(new Date(qp.from));
+      this.checkOut.patchValue(new Date(qp.to));
+    });
+  }
+  ngAfterViewInit() {
+    this.tabs.selectedIndex = 1;
   }
   openDate(date) {
     date.open();
@@ -34,6 +45,9 @@ export class BookingComponent implements OnInit {
     const slotIndex = this.slots.findIndex(s => s.date === slot.date);
     this.slots[slotIndex].available = this.slots[slotIndex].total - this.slots[slotIndex].booked;
     this.carSlotsSelected.splice(i, 1);
+    if (this.carSlotsSelected.length < 1) {
+      this.tabs.selectedIndex = 1;
+    }
   }
   minusBooking(i) {
     const slot = this.slots[i];

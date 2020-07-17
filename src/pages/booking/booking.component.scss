@@ -25,6 +25,8 @@ app-booking {
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        max-width: 20rem;
+        min-width: 20rem;
 
         .space-between-center {
           padding: 1rem;
@@ -37,6 +39,15 @@ app-booking {
             font-size: larger;
           }
         }
+        .scroll-container {
+          max-height: 18rem;
+          overflow-y: scroll;
+
+        }
+        .scroll-container::-webkit-scrollbar {
+          display: none;
+        }
+
       }
 
       .proceed {

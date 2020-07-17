@@ -23,24 +23,27 @@
         <div style="margin-left:6rem">Slots</div>
         <div>Remove</div>
       </div>
-      <div class="row space-between-center" *ngFor="let slot of carSlotsSelected; let i = index">
-        <div class="date">{{slot.date | date:"mediumDate"}}</div>
-        <div class="selected">{{slot.selected}}</div>
-        <button mat-icon-button (click)="removeSlot(i)">
-          <mat-icon>remove_circle_outline</mat-icon>
-        </button>
+      <div class="scroll-container column">
+        <div class="row space-between-center" *ngFor="let slot of carSlotsSelected; let i = index">
+          <div class="date">{{slot.date | date:"mediumDate"}}</div>
+          <div class="selected">{{slot.selected}}</div>
+          <button mat-icon-button (click)="removeSlot(i)">
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+        </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" class="proceed" [disabled]="!carSlotsSelected.length">
+    <button mat-raised-button color="primary" class="proceed" (click)="tab.selectedIndex = 2"
+      [disabled]="!carSlotsSelected.length">
       Proceed further
       <mat-icon>chevron_right</mat-icon>
     </button>
 
   </div>
   <div class="container">
-    <mat-tab-group class="stepper" [backgroundColor]="'#78b052'">
+    <mat-tab-group #tab class="stepper" [backgroundColor]="'#78b052'">
       <mat-tab label="1. Choose Date" disabled></mat-tab>
-      <mat-tab label="2. Choose Slots" isActive="true">
+      <mat-tab label="2. Choose Slots">
         <div class="slot-box" *ngFor="let slot of slots; let i = index">
           <div class="date">
             {{slot?.date | date:"mediumDate"}}
@@ -70,8 +73,8 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="3. Pay & Proceed">
-        <app-payment></app-payment>
+      <mat-tab label="3. Pay & Proceed" disabled>
+        <app-payment [isDisabled]="!carSlotsSelected.length"></app-payment>
       </mat-tab>
     </mat-tab-group>
 
