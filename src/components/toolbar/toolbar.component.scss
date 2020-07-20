@@ -1,18 +1,28 @@
 :host {
   display: flex;
   flex-direction: column;
+
   .toolbar {
     display: flex;
     align-items: center;
     justify-content: center;
     background: #78b052;
-    padding: 3rem;
+    padding: 1rem;
+
+    @media screen and (max-width:960px) {
+      width: 100%;
+      padding: 0rem;
+      justify-content: space-between;
+      .logo{
+        height: 60px;
+        padding-top: 10px;
+      }
+    }
 
     .toolbar-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 60rem;
       width: 100%;
 
       .logo {
@@ -33,6 +43,7 @@
 
     }
   }
+
   .fixed {
     position: absolute;
     background-color: #78b052 !important;
@@ -42,21 +53,26 @@
     align-content: center;
     color: #fff;
   }
+
   .sticky {
     position: fixed;
     overflow: hidden;
     top: 0;
     z-index: 5;
   }
+
   .control-toolbar {
     @extend .toolbar;
     background: black;
-    padding: 1rem;
+    padding: 0.2px;
+
+
     .menu {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 100%;
+
       .menu-item {
         color: #78b052;
         font-weight: 600;

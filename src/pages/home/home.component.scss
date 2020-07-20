@@ -1,127 +1,152 @@
-app-home{
-    .container {
+app-home {
+  .container {
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .carosel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 40rem;
+      background-image: url("https://h7f7z2r7.stackpathcdn.com/sites/default/files/images/articles/parking-gettyimages_0.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.37);
+        bottom: 0;
+      }
+
+      .widget-container {
         display: flex;
-        flex-direction:column;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        margin-top: 11rem;
 
-        .carosel{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            height: 40rem;
-            background-image: url("https://h7f7z2r7.stackpathcdn.com/sites/default/files/images/articles/parking-gettyimages_0.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-            .overlay{
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: rgba(0, 0, 0, 0.37);
-                bottom: 0;
-            }
-            .widget-container{
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-                width: 100%;
-                margin-top: 11rem;
-            .widget{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 13rem;
-                z-index: 2;
-                .icon{
-                    font-size: 3rem;
-                    width: 3rem;
-                    height: 3rem;
-                    color: #78b052;
-                }
-                .fuel{
-                    font-weight: 600;
-                    font-size: 1.4rem;
-                    margin-top: 5px;
-                    color: white;
+        .widget {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 13rem;
+          z-index: 2;
 
-                }
-            }
+          .icon {
+            font-size: 3rem;
+            width: 3rem;
+            height: 3rem;
+            color: #78b052;
+          }
+
+          .fuel {
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-top: 5px;
+            color: white;
+
+          }
         }
-            .form{
-                display: flex;
-                z-index: 2;
-                margin-top: 12rem;
-                .mat-form-field-wrapper{
-                    margin: 0 10px;
-                    .mat-form-field-outline {
-                        background: white;
-                    }
-                    .mat-form-field-label {
-                        transform: translateY(-1.09375em) scale(0.75) !important;
-                    }
-                }
-                .book-now-btn{
-                    background-color: #78b052;
-                    height: 50.81px;
-                    width: 8rem;
-                    margin-left: 10px;
-                    color: white;
-                }
+      }
 
-            }
+      .form {
+        display: flex;
+        z-index: 2;
+        margin-top: 12rem;
+
+        .mat-form-field-wrapper {
+          margin: 0 10px;
+
+          .mat-form-field-outline {
+            background: white;
+          }
+
+          .mat-form-field-label {
+            transform: translateY(-1.09375em) scale(0.75) !important;
+          }
         }
 
-        .cards{
-            padding: 2rem;
-            display: flex;
-
-            .card{
-                display: flex;
-                flex-direction: column;
-                background-color: #78b052;
-                padding: 1rem;
-                margin: 1rem;
-                align-items: center;
-                transition: all ease 0.4s;
-                height: 286px;
-                .title{
-                    font-weight: 700;
-                    color: white;
-                    font-size: 2rem;
-                    margin-bottom: 1rem;
-                }
-                .text{
-                    color: white;
-                }
-            }
-
-            .card:hover{
-                box-shadow:grey 10px 10px 5px 0px
-
-            }
-
+        .book-now-btn {
+          background-color: #78b052;
+          height: 50.81px;
+          width: 8rem;
+          margin-left: 10px;
+          color: white;
         }
 
-        .video-container{
-            display: flex;
-            padding-bottom: 2rem;
-            justify-content: space-around;
-            .video{
-                width: 30rem;
-                height: 20rem;
-                background-color: black;
-            }
-            .text{
-                font-size: 40px;
-                text-transform: uppercase;
-                font-weight: 200;
-                line-height: 1.6;
-                max-width: 30rem;
-            }
-        }
+      }
     }
+
+    .cards {
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        background-color: #78b052;
+        padding: 1rem;
+        margin: 1rem;
+        align-items: center;
+        transition: all ease 0.4s;
+        min-height: 100px;
+        min-width: 15rem;
+        flex: 1 0 25%;
+        max-width: 30rem;
+
+        .title {
+          font-weight: 700;
+          color: white;
+          font-size: 2rem;
+          margin-bottom: 1rem;
+          line-height: 32px;
+        }
+
+        .text {
+          color: white;
+        }
+      }
+
+      .card:hover {
+        box-shadow: grey 10px 10px 5px 0px
+      }
+
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding-bottom: 2rem;
+      justify-content: space-around;
+      @media screen and (max-width:960px) {
+        justify-content: center;
+        .text{
+        text-align: center;
+        }
+      }
+      .video {
+        width: 30rem;
+        height: 20rem;
+        background-color: black;
+      }
+
+      .text {
+        font-size: 40px;
+        text-transform: uppercase;
+        font-weight: 200;
+        line-height: 1.6;
+        max-width: 30rem;
+      }
+    }
+  }
 }

@@ -31,16 +31,16 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
   goToBooking() {
-    if (this.dateForm.valid) {
-      this._route.navigate(['booking'],
-        {
-          queryParams: {
-            from: new Date(this.dateForm.get('checkIn').value).toJSON(),
-            to: new Date(this.dateForm.get('checkOut').value).toJSON()
-          }
-        });
-    } else {
-      this._toast.open('Please Select Dates');
-    }
+    this._route.navigate(['booking']);
+    // if (this.dateForm.valid) {
+    //     {
+    //       queryParams: {
+    //         from: new Date(this.dateForm.get('checkIn').value).toJSON(),
+    //         to: new Date(this.dateForm.get('checkOut').value).toJSON()
+    //       }
+    //     });
+    // } else {
+    //   this._toast.open('Please Select Dates');
+    // }
   }
 }
