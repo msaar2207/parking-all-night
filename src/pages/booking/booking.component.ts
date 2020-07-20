@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '
 import { FormControl } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/providers/data.service';
 
 @Component({
   selector: 'app-booking',
@@ -16,18 +17,21 @@ export class BookingComponent implements OnInit, AfterViewInit {
   checkOut = new FormControl();
   nowDate = new Date();
   slots = [
-    { available: 7, booked: 3, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 1) },
+    { available: 7, booked: 10, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 1) },
     { available: 4, booked: 6, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 2) },
     { available: 8, booked: 2, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 3) },
     { available: 1, booked: 9, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 4) },
   ];
   carSlotsSelected = [];
-  constructor(private _router: ActivatedRoute) { }
+  constructor(private _router: ActivatedRoute, private dataService: DataService) {
+  }
 
   ngOnInit(): void {
+
     this._router.queryParams.subscribe(qp => {
       this.checkIn.patchValue(new Date(qp.from));
       this.checkOut.patchValue(new Date(qp.to));
+      this.dataService.getByFilter('slots', { from: qp.from, to: qp.to }, {}, 0, 100).subscribe(data => console.log(data));
     });
   }
   ngAfterViewInit() {

@@ -4,8 +4,8 @@
     <div class="widget-container">
       <div class="widget">
         <mat-icon class="icon">local_gas_station</mat-icon>
-        <div class="fuel">GAS</div>
-        <div class="fuel">Diesel</div>
+        <div class="fuel">${{gasPrice | number: '1.1-2'}} GAS</div>
+        <div class="fuel">${{dieselPrice | number: '1.1-2'}} Diesel</div>
       </div>
       <div class="widget">
         <mat-icon class="icon">access_time</mat-icon>
