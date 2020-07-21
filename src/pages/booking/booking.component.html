@@ -1,5 +1,5 @@
 <div class="page-container">
-  <div class="booking-summary">
+  <!-- <div class="booking-summary">
     <div class="title">Your Reservation</div>
     <div class="summary">
       <mat-form-field appearance="outline">
@@ -39,41 +39,52 @@
       <mat-icon>chevron_right</mat-icon>
     </button>
 
-  </div>
+  </div> -->
   <div class="container">
     <mat-tab-group #tab class="stepper" [backgroundColor]="'#78b052'">
-      <mat-tab label="1. Choose Date" disabled></mat-tab>
-      <mat-tab label="2. Choose Slots">
-        <div class="slot-box" *ngFor="let slot of slots; let i = index">
-          <div class="date">
-            {{slot?.date | date:"mediumDate"}}
-          </div>
-          <div class="slots">
-            <div class="slot total">
-              <div class="label">Total</div>
-              <div class="number">{{slot.total || 10}}</div>
-            </div>
-            <div class="slot booked">
-              <div class="label">Booked</div>
-              <div class="number">{{slot.booked || 0}}</div>
-            </div>
-            <div class="slot available">
-              <div class="label">Available</div>
-              <div class="control">
-                <button [disabled]="slot.total == (slot.booked + slot.available)" mat-icon-button
-                  (click)="minusBooking(i)">
-                  <mat-icon>remove</mat-icon>
-                </button>
-                <div class="number">{{slot.available}}</div>
-                <button mat-icon-button [disabled]="slot.available == 0" (click)="addBooking(i)">
-                  <mat-icon>add</mat-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <mat-tab label="1. Choose Date" >
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = false"
+                               (closed)="panelOpenState = true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Checking Dates
+              </mat-panel-title>
+              <!-- <mat-panel-description>
+                Personal Details
+              </mat-panel-description> -->
+            </mat-expansion-panel-header>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Check in</mat-label>
+              <input matInput (dateTimeChange)="getDate($event,'checkIn')"
+               [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
+              <owl-date-time #dt1></owl-date-time>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Check out</mat-label>
+              <input matInput (dateTimeChange)="getDate($event,'checkOut')"
+               [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date Time">
+              <owl-date-time #dt2></owl-date-time>
+            </mat-form-field>
+
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Self aware panel
+              </mat-panel-title>
+              <!-- <mat-panel-description>
+              Currently I am {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+        </mat-accordion>
       </mat-tab>
-      <mat-tab label="3. Pay & Proceed" disabled>
+
+      <mat-tab label="2. Pay & Proceed" disabled>
         <app-payment [isDisabled]="!carSlotsSelected.length"></app-payment>
       </mat-tab>
     </mat-tab-group>

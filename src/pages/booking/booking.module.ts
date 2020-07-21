@@ -13,6 +13,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PaymentModule } from '../payment/payment.module';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [BookingComponent],
@@ -25,6 +27,9 @@ import { PaymentModule } from '../payment/payment.module';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    MatExpansionModule,
     MatTabsModule,
     PaymentModule,
     RouterModule.forChild([

@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/providers/data.service';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-booking',
@@ -27,15 +28,17 @@ export class BookingComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
-    this._router.queryParams.subscribe(qp => {
+      this._router.queryParams.subscribe(qp => {
       this.checkIn.patchValue(new Date(qp.from));
       this.checkOut.patchValue(new Date(qp.to));
       this.dataService.getByFilter('slots', { from: qp.from, to: qp.to }, {}, 0, 100).subscribe(data => console.log(data));
     });
   }
   ngAfterViewInit() {
-    this.tabs.selectedIndex = 1;
+    this.tabs.selectedIndex = 0;
+  }
+  getDate(date,type) {
+    console.log(date.value,type)
   }
   openDate(date) {
     date.open();
