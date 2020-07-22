@@ -54,34 +54,68 @@
                 Personal Details
               </mat-panel-description> -->
             </mat-expansion-panel-header>
-
-            <mat-form-field appearance="fill">
+            <form [formGroup]="checkingForm"  class="column checking-form">
+            <mat-form-field appearance="outline">
               <mat-label>Check in</mat-label>
-              <input matInput (dateTimeChange)="getDate($event,'checkIn')"
+              <input formControlName="checkin" matInput (dateTimeChange)="getDate($event,'checkIn')"
                [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
               <owl-date-time #dt1></owl-date-time>
+              <mat-error *ngIf="checkingForm.get('checkin')?.hasError('required')">
+                Check In date is required
+              </mat-error>
             </mat-form-field>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="outline">
               <mat-label>Check out</mat-label>
-              <input matInput (dateTimeChange)="getDate($event,'checkOut')"
+              <input formControlName="checkout" matInput (dateTimeChange)="getDate($event,'checkOut')"
                [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date Time">
               <owl-date-time #dt2></owl-date-time>
+              <mat-error *ngIf="checkingForm.get('checkout')?.hasError('required')">
+                Check Out date is required
+              </mat-error>
             </mat-form-field>
-
+            </form>
           </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Self aware panel
+                Customer Information
               </mat-panel-title>
               <!-- <mat-panel-description>
               Currently I am {{panelOpenState ? 'open' : 'closed'}}
             </mat-panel-description> -->
             </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
+            <form [formGroup]="infoForm"  class="column info-form">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input formControlName="firstName" matInput placeholder="Name">
+              <mat-error *ngIf="infoForm.get('firstName')?.hasError('required')">
+                first name is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input formControlName="lastName" matInput placeholder="Name">
+              <mat-error *ngIf="infoForm.get('lastName')?.hasError('required')">
+                last name is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" matInput placeholder="Email">
+              <mat-error *ngIf="infoForm.get('email')?.hasError('required')">
+                Email is required
+              </mat-error>
+              <mat-error *ngIf="infoForm.get('email')?.hasError('email')">
+                Email format is incorrect
+              </mat-error>
+            </mat-form-field>
+          </form>
           </mat-expansion-panel>
         </mat-accordion>
+        <div class="div-proceed-to-payment">
+          <button mat-stroked-button color="primary" class="proceed-to-payment-btn" (click)="tab.selectedIndex = 2">PROCEED TO PAYMENT</button>
+        </div>
       </mat-tab>
 
       <mat-tab label="2. Pay & Proceed" disabled>
@@ -90,8 +124,4 @@
     </mat-tab-group>
 
   </div>
-</div>
-
-<div class="container">
-
 </div>

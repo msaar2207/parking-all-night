@@ -1,6 +1,5 @@
 @import "~ng-pick-datetime/assets/style/picker.min.css";
 app-booking {
-
   .page-container {
     display: flex;
     padding: 2rem;
@@ -63,8 +62,6 @@ app-booking {
       .proceed[disabled] {
         background: rgba(0, 0, 0, .12) !important;
       }
-
-      .dates {}
     }
 
     .container {
@@ -73,6 +70,38 @@ app-booking {
       margin-left: 2rem;
       width: 100%;
       max-width: 60rem;
+
+      .proceed-to-payment-btn{
+        width: 400px;
+        height: 36px;
+        margin-top: 2rem;
+        color: #78b052;
+      }
+
+      .div-proceed-to-payment{
+        align-items: center;
+        margin-left: 17rem;
+      }
+
+      .mat-expansion-panel-content {
+        align-items: baseline !important;
+      }
+
+      .info-form{
+        max-width: 25rem;
+          margin: 2rem auto;
+          mat-form-field{
+            width: 100%;
+          }
+        }
+
+      .checking-form{
+        max-width: 25rem;
+          margin: 2rem auto;
+          mat-form-field{
+            width: 100%;
+          }
+        }
 
       .stepper {
         border-radius: 5px;
@@ -131,8 +160,6 @@ app-booking {
             min-width: 6rem;
             text-align: center;
             border-radius: 5px;
-
-            .label {}
 
             .control {
               display: flex;

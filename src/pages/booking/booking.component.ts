@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, AfterViewInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl,FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/providers/data.service';
@@ -13,10 +13,13 @@ import { MatExpansionPanel } from '@angular/material/expansion';
 })
 export class BookingComponent implements OnInit, AfterViewInit {
   @ViewChild('tab', { static: false }) tabs: MatTabGroup;
-
+  checkingForm: FormGroup = new FormGroup({});
+  infoForm: FormGroup = new FormGroup({});
   checkIn = new FormControl();
   checkOut = new FormControl();
   nowDate = new Date();
+  panelOpenState = true;
+
   slots = [
     { available: 7, booked: 10, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 1) },
     { available: 4, booked: 6, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 2) },
@@ -24,7 +27,18 @@ export class BookingComponent implements OnInit, AfterViewInit {
     { available: 1, booked: 9, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 4) },
   ];
   carSlotsSelected = [];
-  constructor(private _router: ActivatedRoute, private dataService: DataService) {
+  constructor(private _router: ActivatedRoute, private dataService: DataService,private _fbbooking: FormBuilder,private _fbinfo: FormBuilder) {
+    this.checkingForm = this._fbbooking.group({
+      checkin: new FormControl("", [Validators.required]),
+      checkout: new FormControl("", [Validators.required])
+    })
+
+    this.infoForm = this._fbinfo.group({
+      firstName: new FormControl("", [Validators.required]),
+      lastName: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.email, Validators.required])
+    })
+
   }
 
   ngOnInit(): void {
