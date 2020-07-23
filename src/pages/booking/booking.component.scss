@@ -1,9 +1,10 @@
 @import "~ng-pick-datetime/assets/style/picker.min.css";
+
 app-booking {
   .page-container {
     display: flex;
     padding: 2rem;
-
+    justify-content: center;
     .booking-summary {
       display: flex;
       flex-direction: column;
@@ -40,11 +41,13 @@ app-booking {
             font-size: larger;
           }
         }
+
         .scroll-container {
           max-height: 18rem;
           overflow-y: scroll;
 
         }
+
         .scroll-container::-webkit-scrollbar {
           display: none;
         }
@@ -71,14 +74,14 @@ app-booking {
       width: 100%;
       max-width: 60rem;
 
-      .proceed-to-payment-btn{
+      .proceed-to-payment-btn {
         width: 400px;
         height: 36px;
-        margin-top: 2rem;
+        margin: 2rem 0;
         color: #78b052;
       }
 
-      .div-proceed-to-payment{
+      .div-proceed-to-payment {
         align-items: center;
         margin-left: 17rem;
       }
@@ -87,21 +90,23 @@ app-booking {
         align-items: baseline !important;
       }
 
-      .info-form{
+      .info-form {
         max-width: 25rem;
-          margin: 2rem auto;
-          mat-form-field{
-            width: 100%;
-          }
-        }
+        margin: 2rem auto;
 
-      .checking-form{
-        max-width: 25rem;
-          margin: 2rem auto;
-          mat-form-field{
-            width: 100%;
-          }
+        mat-form-field {
+          width: 100%;
         }
+      }
+
+      .checking-form {
+        max-width: 25rem;
+        margin: 2rem auto;
+
+        mat-form-field {
+          width: 100%;
+        }
+      }
 
       .stepper {
         border-radius: 5px;
@@ -110,6 +115,7 @@ app-booking {
         width: 100%;
         margin-bottom: 2rem;
         justify-content: space-between;
+        border: solid 1px #efecec;
 
         .mat-tab-header {
           width: 100%;

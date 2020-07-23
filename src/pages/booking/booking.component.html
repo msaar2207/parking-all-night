@@ -42,10 +42,9 @@
   </div> -->
   <div class="container">
     <mat-tab-group #tab class="stepper" [backgroundColor]="'#78b052'">
-      <mat-tab label="1. Choose Date" >
+      <mat-tab label="1. Choose Date">
         <mat-accordion>
-          <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = false"
-                               (closed)="panelOpenState = true">
+          <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = false" (closed)="panelOpenState = true">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Checking Dates
@@ -54,29 +53,28 @@
                 Personal Details
               </mat-panel-description> -->
             </mat-expansion-panel-header>
-            <form [formGroup]="checkingForm"  class="column checking-form">
-            <mat-form-field appearance="outline">
-              <mat-label>Check in</mat-label>
-              <input formControlName="checkin" matInput (dateTimeChange)="getDate($event,'checkIn')"
-               [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
-              <owl-date-time #dt1></owl-date-time>
-              <mat-error *ngIf="checkingForm.get('checkin')?.hasError('required')">
-                Check In date is required
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Check out</mat-label>
-              <input formControlName="checkout" matInput (dateTimeChange)="getDate($event,'checkOut')"
-               [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date Time">
-              <owl-date-time #dt2></owl-date-time>
-              <mat-error *ngIf="checkingForm.get('checkout')?.hasError('required')">
-                Check Out date is required
-              </mat-error>
-            </mat-form-field>
+            <form [formGroup]="checkingForm" class="column checking-form">
+              <mat-form-field appearance="outline">
+                <mat-label>Check in</mat-label>
+                <input autocomplete="off" formControlName="checkin" matInput (dateTimeChange)="getDate($event,'checkIn')" [min]="nowDate"
+                  [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
+                <owl-date-time #dt1></owl-date-time>
+                <mat-error *ngIf="checkingForm.get('checkin')?.hasError('required')">
+                  Check In date is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Check out</mat-label>
+                <input autocomplete="off" formControlName="checkout" matInput (dateTimeChange)="getDate($event,'checkOut')"
+                  [min]="checkingForm.get('checkin').value"  [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date Time">
+                <owl-date-time #dt2></owl-date-time>
+                <mat-error *ngIf="checkingForm.get('checkout')?.hasError('required')">
+                  Check Out date is required
+                </mat-error>
+              </mat-form-field>
             </form>
           </mat-expansion-panel>
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Customer Information
@@ -85,36 +83,37 @@
               Currently I am {{panelOpenState ? 'open' : 'closed'}}
             </mat-panel-description> -->
             </mat-expansion-panel-header>
-            <form [formGroup]="infoForm"  class="column info-form">
-            <mat-form-field appearance="outline">
-              <mat-label>First Name</mat-label>
-              <input formControlName="firstName" matInput placeholder="Name">
-              <mat-error *ngIf="infoForm.get('firstName')?.hasError('required')">
-                first name is required
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Last Name</mat-label>
-              <input formControlName="lastName" matInput placeholder="Name">
-              <mat-error *ngIf="infoForm.get('lastName')?.hasError('required')">
-                last name is required
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Email</mat-label>
-              <input formControlName="email" matInput placeholder="Email">
-              <mat-error *ngIf="infoForm.get('email')?.hasError('required')">
-                Email is required
-              </mat-error>
-              <mat-error *ngIf="infoForm.get('email')?.hasError('email')">
-                Email format is incorrect
-              </mat-error>
-            </mat-form-field>
-          </form>
+            <form [formGroup]="infoForm" class="column info-form">
+              <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input formControlName="firstName" matInput placeholder="Name">
+                <mat-error *ngIf="infoForm.get('firstName')?.hasError('required')">
+                  first name is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input formControlName="lastName" matInput placeholder="Name">
+                <mat-error *ngIf="infoForm.get('lastName')?.hasError('required')">
+                  last name is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput placeholder="Email">
+                <mat-error *ngIf="infoForm.get('email')?.hasError('required')">
+                  Email is required
+                </mat-error>
+                <mat-error *ngIf="infoForm.get('email')?.hasError('email')">
+                  Email format is incorrect
+                </mat-error>
+              </mat-form-field>
+            </form>
           </mat-expansion-panel>
         </mat-accordion>
         <div class="div-proceed-to-payment">
-          <button mat-stroked-button color="primary" class="proceed-to-payment-btn" (click)="tab.selectedIndex = 2">PROCEED TO PAYMENT</button>
+          <button mat-stroked-button color="primary" class="proceed-to-payment-btn"
+            (click)="tab.selectedIndex = 2">PROCEED TO PAYMENT</button>
         </div>
       </mat-tab>
 
