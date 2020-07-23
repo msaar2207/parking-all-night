@@ -1,8 +1,21 @@
 @import "~ng-pick-datetime/assets/style/picker.min.css";
+
 app-booking {
+  .mat-expansion-panel {
+    box-shadow: none !important;
+  }
+
+  .mat-expansion-panel-body {
+    padding: 0 2rem !important;
+  }
+
   .page-container {
     display: flex;
-    padding: 2rem;
+    background: url("../../assets/images/booking-background.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 24px);
 
     .booking-summary {
       display: flex;
@@ -40,11 +53,13 @@ app-booking {
             font-size: larger;
           }
         }
+
         .scroll-container {
           max-height: 18rem;
           overflow-y: scroll;
 
         }
+
         .scroll-container::-webkit-scrollbar {
           display: none;
         }
@@ -64,44 +79,47 @@ app-booking {
       }
     }
 
+    h1 {
+      color: #78b052;
+      font-weight: 400;
+
+    }
+
     .container {
       display: flex;
       flex-direction: column;
-      margin-left: 2rem;
-      width: 100%;
-      max-width: 60rem;
+      padding: 2rem;
 
-      .proceed-to-payment-btn{
+      .proceed-to-payment-btn {
         width: 400px;
         height: 36px;
-        margin-top: 2rem;
+        margin: 1rem 2rem;
         color: #78b052;
-      }
-
-      .div-proceed-to-payment{
-        align-items: center;
-        margin-left: 17rem;
+        border: solid 1px;
       }
 
       .mat-expansion-panel-content {
-        align-items: baseline !important;
+        // align-items: baseline !important;
+        background: rgb(164 164 164 / 6%);
       }
 
-      .info-form{
+      .info-form {
         max-width: 25rem;
-          margin: 2rem auto;
-          mat-form-field{
-            width: 100%;
-          }
-        }
+        margin: 2rem auto;
 
-      .checking-form{
-        max-width: 25rem;
-          margin: 2rem auto;
-          mat-form-field{
-            width: 100%;
-          }
+        mat-form-field {
+          width: 100%;
         }
+      }
+
+      .checking-form {
+        max-width: 25rem;
+        margin: 2rem auto;
+
+        mat-form-field {
+          width: 100%;
+        }
+      }
 
       .stepper {
         border-radius: 5px;
@@ -109,8 +127,10 @@ app-booking {
         align-items: center;
         width: 100%;
         margin-bottom: 2rem;
-        justify-content: space-between;
-
+        background: white;
+        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+        height: 670px;
+        position: relative;
         .mat-tab-header {
           width: 100%;
           background: #78b052;
