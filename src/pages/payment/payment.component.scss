@@ -1,27 +1,52 @@
 :host{
-
-  .payment-form{
-
-    max-width: 25rem;
-    margin: 2rem auto;
-    mat-form-field{
-      width: 100%;
+  .container{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    .w-150{
+      width: 200px;
+    }
+    .w-100{
+      width: 100px;
     }
     .row{
-      width: 100%;
-      .expiry{
-        max-width: 15rem;
-      }
-      .cvv{
-        max-width: 8rem;
+      margin-bottom: 1rem;
+      &.row-total{
+        margin-top: 2rem;
       }
     }
-    .pay-now-btn{
-      width: 100%;
-      margin-top: 2rem;
-      color: #78b052;
+    .font-price{
+      font-size: 20px;
+      font-weight: 500;
     }
-}
+    .payment-reciept{
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+    }
+    .payment-form{
+
+      max-width: 25rem;
+      text-align: center;
+      mat-form-field{
+        width: 100%;
+      }
+      .row{
+        width: 100%;
+        .expiry{
+          max-width: 15rem;
+        }
+        .cvv{
+          max-width: 8rem;
+          margin-left: 1rem;
+        }
+      }
+      .pay-now-btn{
+        width: 100%;
+        color: #78b052;
+      }
+    }
+  }
 
 }
 
