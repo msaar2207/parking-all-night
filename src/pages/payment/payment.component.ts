@@ -14,6 +14,7 @@ import { CreditCardValidators } from "angular-cc-library";
 })
 export class PaymentComponent implements OnInit {
   @Input() isDisabled = true;
+  @Input() bookingData;
   ccForm: FormGroup = new FormGroup({});
   constructor(private _fb: FormBuilder) {
     this.ccForm = this._fb.group({
@@ -34,7 +35,7 @@ export class PaymentComponent implements OnInit {
         Validators.maxLength(4),
       ]),
     });
-    this.ccForm.valueChanges.subscribe(console.log)
+    this.ccForm.valueChanges.subscribe(console.log);
   }
 
   ngOnInit(): void {}
