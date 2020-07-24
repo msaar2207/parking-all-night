@@ -112,12 +112,12 @@
           </mat-expansion-panel>
         </mat-accordion>
         <div>
-          <button mat-stroked-button color="primary" class="proceed-to-payment-btn" (click)="tab.selectedIndex = 2">PROCEED TO PAYMENT</button>
+          <button mat-stroked-button color="primary" class="proceed-to-payment-btn" (click)="goToPayment()">PROCEED TO PAYMENT</button>
         </div>
       </mat-tab>
 
       <mat-tab label="2. Pay & Proceed" disabled>
-        <app-payment [isDisabled]="!carSlotsSelected.length"></app-payment>
+        <app-payment [bookingData]="bookingData" [isDisabled]="!carSlotsSelected.length"></app-payment>
       </mat-tab>
     </mat-tab-group>
 

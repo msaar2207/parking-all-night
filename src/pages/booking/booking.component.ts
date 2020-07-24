@@ -15,8 +15,6 @@ export class BookingComponent implements OnInit, AfterViewInit {
   @ViewChild('tab', { static: false }) tabs: MatTabGroup;
   checkingForm: FormGroup = new FormGroup({});
   infoForm: FormGroup = new FormGroup({});
-  checkIn = new FormControl();
-  checkOut = new FormControl();
   nowDate = new Date();
   panelOpenState = true;
 
@@ -27,6 +25,7 @@ export class BookingComponent implements OnInit, AfterViewInit {
     { available: 1, booked: 9, total: 10, selected: 0, date: (new Date()).setDate((new Date()).getDate() + 4) },
   ];
   carSlotsSelected = [];
+  bookingData: { checkin: Date; checkout: Date; days: number; reservationId: number};
   constructor(private _router: ActivatedRoute, private dataService: DataService,private _fbbooking: FormBuilder,private _fbinfo: FormBuilder) {
     this.checkingForm = this._fbbooking.group({
       checkin: new FormControl("", [Validators.required]),
@@ -42,11 +41,6 @@ export class BookingComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-      this._router.queryParams.subscribe(qp => {
-      this.checkIn.patchValue(new Date(qp.from));
-      this.checkOut.patchValue(new Date(qp.to));
-      this.dataService.getByFilter('slots', { from: qp.from, to: qp.to }, {}, 0, 100).subscribe(data => console.log(data));
-    });
   }
   ngAfterViewInit() {
     this.tabs.selectedIndex = 0;
@@ -57,8 +51,15 @@ export class BookingComponent implements OnInit, AfterViewInit {
   openDate(date) {
     date.open();
   }
-  updateSelections() {
-    this.slots = this.slots.filter(d => d.date >= this.checkIn.value && d.date <= this.checkOut.value);
+  goToPayment(){
+    this.tabs.selectedIndex=2;
+    this.getDay();
+    this.bookingData={
+      checkin:this.checkingForm.get("checkin").value,
+      checkout:this.checkingForm.get("checkout").value,
+      days:this.getDay(),
+      reservationId: Math.floor((Math.random()*99999)+99999)
+    }
   }
   removeSlot(i) {
     const slot = this.carSlotsSelected[i];
@@ -87,5 +88,12 @@ export class BookingComponent implements OnInit, AfterViewInit {
     if (!this.carSlotsSelected.find(s => s.date === slot.date)) {
       this.carSlotsSelected.splice(i, 0, this.slots[i]);
     }
+  }
+  getDay(): number {
+
+    const diffTime = Math.abs(this.checkingForm.get("checkin").value - this.checkingForm.get("checkout").value);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    console.log(diffDays + " days");
+    return diffDays;
   }
 }
