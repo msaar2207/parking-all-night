@@ -2,7 +2,7 @@
   .container{
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 20px;
     .w-150{
       width: 200px;
     }
@@ -10,9 +10,9 @@
       width: 100px;
     }
     .row{
-      margin-bottom: 1rem;
+      margin-bottom: 10px;
       &.row-total{
-        margin-top: 2rem;
+        margin-top: 20px;
       }
     }
     .font-price{
@@ -26,7 +26,6 @@
     }
     .payment-form{
 
-      max-width: 25rem;
       text-align: center;
       mat-form-field{
         width: 100%;
@@ -34,11 +33,11 @@
       .row{
         width: 100%;
         .expiry{
-          max-width: 15rem;
+          max-width: 150px;
         }
         .cvv{
-          max-width: 8rem;
-          margin-left: 1rem;
+          max-width: 80px;
+          margin-left: 10px;
         }
       }
       .pay-now-btn{
