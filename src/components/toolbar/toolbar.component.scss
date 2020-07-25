@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     background: #78b052;
-    padding: 10px;
+    //padding: 10px;
 
     @media screen and (max-width:960px) {
       width: 100%;
@@ -66,7 +66,7 @@
   .control-toolbar {
     @extend .toolbar;
 background: #3f3d3d;
-    padding: 16px;
+    padding: 7px;
 
 
     .menu {

@@ -14,7 +14,29 @@
       </div>
     </div>
     <form class="form" [formGroup]="dateForm">
-      <button mat-button-raised class="book-now-btn" (click)="goToBooking()">Make a Reservation</button>
+      <div style="margin-top: 10px;">
+      <mat-form-field appearance="outline">
+        <mat-label>Check in</mat-label>
+        <input class="mat-font-color" autocomplete="off" formControlName="checkin" matInput (dateTimeChange)="getDate($event,'checkIn')" [min]="nowDate"
+          [owlDateTime]="dt3" [owlDateTimeTrigger]="dt3" placeholder="Date Time">
+        <owl-date-time #dt3></owl-date-time>
+        <mat-error *ngIf="dateForm.get('checkin')?.hasError('required')">
+          Check In date is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Check out</mat-label>
+        <input class="mat-font-color" autocomplete="off" formControlName="checkout" matInput (dateTimeChange)="getDate($event,'checkOut')"
+          [min]="dateForm.get('checkin').value"  [owlDateTime]="dt4" [owlDateTimeTrigger]="dt4" placeholder="Date Time">
+        <owl-date-time #dt4></owl-date-time>
+        <mat-error *ngIf="dateForm.get('checkout')?.hasError('required')">
+          Check Out date is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-button-raised class="book-now-btn" (click)="goToBooking()">Book Now</button>
+    </div>
     </form>
   </div>
 
