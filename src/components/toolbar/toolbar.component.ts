@@ -40,7 +40,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.elementPosition = this.toolbars.nativeElement.offsetTop;
+    // this.elementPosition = this.toolbars.nativeElement.offsetTop;
   }
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
