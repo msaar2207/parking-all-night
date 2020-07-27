@@ -3,7 +3,8 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/providers/data.service';
-import {trigger,state,style,animate,transition} from '@angular/animations';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-home',
@@ -34,11 +35,47 @@ export class HomeComponent implements OnInit {
   isOpen = true;
   gasPrice: any;
   dieselPrice: any;
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  };
+  imageObject = [{
+    image: 'assets/images/truck1.jpg',
+    thumbImage: 'assets/images/truck2.jpg',
+    alt: 'alt of image',
+    title: 'title of image'
+  }, {
+    image: 'assets/images/truck2.jpg', // Support base64 image
+    thumbImage: 'assets/images/truck2.jpg', // Support base64 image
+    title: 'Image title'
+  }
+  ];
   constructor(private _fb: FormBuilder, private _route: Router, private _toast: MatSnackBar, private dataService: DataService) {
     this.dateForm = this._fb.group({
       checkin: new FormControl("", [Validators.required]),
       checkout: new FormControl("", [Validators.required]),
     });
+
     // this.dataService.getFuelPrice().subscribe((data: any) => {
     //   console.log(data);
     //   const city = data.result.find(d => d.name === 'Tennessee');
@@ -66,8 +103,8 @@ export class HomeComponent implements OnInit {
     //   this._toast.open('Please Select Dates');
     // }
   }
-  getDate(date,type) {
-    console.log(date.value,type)
+  getDate(date, type) {
+    console.log(date.value, type)
   }
   openDate(date) {
     date.open();

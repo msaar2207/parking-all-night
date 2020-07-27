@@ -1,5 +1,14 @@
 <div class="container">
   <div class="carosel">
+    <!-- <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let slide of imageObject">
+        <ng-template carouselSlide>
+          <img [src]="slide.image" [alt]="slide.alt" [title]="slide.title">
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o> -->
     <div class="overlay"></div>
     <div class="widget-container">
       <div class="widget">
@@ -14,44 +23,52 @@
       </div>
     </div>
     <form class="form" [formGroup]="dateForm">
-      <div style="margin-top: 10px;">
-      <mat-form-field appearance="outline">
-        <mat-label>Check in</mat-label>
-        <input class="mat-font-color" autocomplete="off" formControlName="checkin" matInput (dateTimeChange)="getDate($event,'checkIn')" [min]="nowDate"
-          [owlDateTime]="dt3" [owlDateTimeTrigger]="dt3" placeholder="Date Time">
-        <owl-date-time #dt3></owl-date-time>
-        <mat-error *ngIf="dateForm.get('checkin')?.hasError('required')">
-          Check In date is required
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Check out</mat-label>
-        <input class="mat-font-color" autocomplete="off" formControlName="checkout" matInput (dateTimeChange)="getDate($event,'checkOut')"
-          [min]="dateForm.get('checkin').value"  [owlDateTime]="dt4" [owlDateTimeTrigger]="dt4" placeholder="Date Time">
-        <owl-date-time #dt4></owl-date-time>
-        <mat-error *ngIf="dateForm.get('checkout')?.hasError('required')">
-          Check Out date is required
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <div>
-      <button mat-button-raised class="book-now-btn" (click)="goToBooking()">Book Now</button>
-    </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Check in</mat-label>
+          <input class="mat-font-color" autocomplete="off" formControlName="checkin" matInput
+            (dateTimeChange)="getDate($event,'checkIn')" [min]="nowDate" [owlDateTime]="dt3" [owlDateTimeTrigger]="dt3"
+            placeholder="Date Time">
+          <owl-date-time #dt3></owl-date-time>
+          <mat-error *ngIf="dateForm.get('checkin')?.hasError('required')">
+            Check In date is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Check out</mat-label>
+          <input class="mat-font-color" autocomplete="off" formControlName="checkout" matInput
+            (dateTimeChange)="getDate($event,'checkOut')" [min]="dateForm.get('checkin').value" [owlDateTime]="dt4"
+            [owlDateTimeTrigger]="dt4" placeholder="Date Time">
+          <owl-date-time #dt4></owl-date-time>
+          <mat-error *ngIf="dateForm.get('checkout')?.hasError('required')">
+            Check Out date is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button-raised class="book-now-btn" (click)="goToBooking()">Book Now</button>
+      </div>
     </form>
   </div>
 
   <div class="cards">
     <div class="card">
       <div class="title">Who We Are</div>
-      <div class="text">We are a secure parking facility based out of Knoxville, Tennessee. We are located off I40 at the Strawberry Plains Exit (Exit 398) near I40 and I275. Providing safe and secure parking, Park All Night is dedicated to keep the roads safe as well as drivers who spend their days and nights traveling across the United States.</div>
+      <div class="text">We are a secure parking facility based out of Knoxville, Tennessee. We are located off I40 at
+        the Strawberry Plains Exit (Exit 398) near I40 and I275. Providing safe and secure parking, Park All Night is
+        dedicated to keep the roads safe as well as drivers who spend their days and nights traveling across the United
+        States.</div>
     </div>
     <div class="card">
       <div class="title">What We Provide</div>
-      <div class="text">Park All Night helps truckers, families, and everyday travelers with keeping their belongings and high value freight secure throughout the night, providing travelers a peace of mind during their time within the facility.</div>
+      <div class="text">Park All Night helps truckers, families, and everyday travelers with keeping their belongings
+        and high value freight secure throughout the night, providing travelers a peace of mind during their time within
+        the facility.</div>
     </div>
     <div class="card">
       <div class="title">Our Mission</div>
-      <div class="text">Our mission is to provide the best service and parking facility to travelers across the nation.</div>
+      <div class="text">Our mission is to provide the best service and parking facility to travelers across the nation.
+      </div>
     </div>
 
   </div>
