@@ -21,4 +21,7 @@ export class DataService {
       }
     });
   }
+  createBooking(bookingObj) {
+    return this._http.post(`${environment.url}bookings`, bookingObj);
+  }
 }

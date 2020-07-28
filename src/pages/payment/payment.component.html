@@ -58,7 +58,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <button mat-stroked-button color="primary" class="pay-now-btn" [disabled]="isDisabled" (click)="submit()">Pay Now</button>
+        <button mat-stroked-button color="primary" class="pay-now-btn" [disabled]="!this.ccForm.valid" (click)="submit()">Pay Now</button>
       </form>
   </div>
 </div>

@@ -1,35 +1,35 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
   FormControl,
   Validators,
-} from "@angular/forms";
-import { CreditCardValidators } from "angular-cc-library";
+} from '@angular/forms';
+import { CreditCardValidators } from 'angular-cc-library';
+import { DataService } from 'src/providers/data.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-payment",
-  templateUrl: "./payment.component.html",
-  styleUrls: ["./payment.component.scss"],
+  selector: 'app-payment',
+  templateUrl: './payment.component.html',
+  styleUrls: ['./payment.component.scss'],
 })
 export class PaymentComponent implements OnInit {
-  @Input() isDisabled = true;
   @Input() bookingData;
   ccForm: FormGroup = new FormGroup({});
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: FormBuilder, private _dataService: DataService, private _router: Router) {
     this.ccForm = this._fb.group({
-      email: new FormControl("", [Validators.email, Validators.required]),
-      cardNumber: new FormControl("", [
+      cardNumber: new FormControl('', [
         Validators.minLength(16),
         Validators.required,
         CreditCardValidators.validateCCNumber,
       ]),
-      cardName: new FormControl("", [Validators.required]),
-      expiry: new FormControl("", [
+      cardName: new FormControl('', [Validators.required]),
+      expiry: new FormControl('', [
         Validators.required,
         CreditCardValidators.validateExpDate,
       ]),
-      cvv: new FormControl("", [
+      cvv: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(4),
@@ -38,9 +38,22 @@ export class PaymentComponent implements OnInit {
     this.ccForm.valueChanges.subscribe(console.log);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   submit() {
-    console.log(this.ccForm);
+    const booking = {
+      user: this.bookingData.user,
+      checkIn: this.bookingData.checkin,
+      checkOut: this.bookingData.checkout,
+      bookingDays: this.bookingData.days,
+      unitPrice: 25,
+      totalPrice: 25 * this.bookingData.days,
+      reservationId: this.bookingData.reservationId
+    };
+    this._dataService.createBooking(booking).subscribe((data: any) => {
+      if (data.status) {
+        this._router.navigate(['thankyou'], { queryParams: { recieptNumber: this.bookingData.reservationId } });
+      }
+    });
   }
 }

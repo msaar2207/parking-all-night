@@ -1,23 +1,29 @@
 <div class="page-container">
-  <!-- <div class="booking-summary">
+  <div class="booking-summary">
     <div class="title">Your Reservation</div>
     <div class="summary">
-      <mat-form-field appearance="outline">
-        <mat-label>Check in Date</mat-label>
-        <input autocomplete="off" (click)="picker1.open()" [formControl]="checkIn" matInput [matDatepicker]="picker1"
-          [min]="nowDate">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Check Out Date</mat-label>
-        <input autocomplete="off" (click)="picker2.open()" [formControl]="checkOut" [disabled]="!checkIn.value" matInput
-          [matDatepicker]="picker2" [min]="checkIn.value">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
-      <button mat-stroked-button (click)="updateSelections()">Check Availiblity</button>
+      <form [formGroup]="checkingForm" class="column checking-form">
+        <mat-form-field appearance="outline">
+          <mat-label>Check in</mat-label>
+          <input autocomplete="off" formControlName="checkin" matInput (dateTimeChange)="getDate($event,'checkIn')"
+            [min]="nowDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
+          <owl-date-time #dt1></owl-date-time>
+          <mat-error *ngIf="checkingForm.get('checkin')?.hasError('required')">
+            Check In date is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Check out</mat-label>
+          <input autocomplete="off" formControlName="checkout" matInput (dateTimeChange)="getDate($event,'checkOut')"
+            [min]="checkingForm.get('checkin').value" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2"
+            placeholder="Date Time">
+          <owl-date-time #dt2></owl-date-time>
+          <mat-error *ngIf="checkingForm.get('checkout')?.hasError('required')">
+            Check Out date is required
+          </mat-error>
+        </mat-form-field>
+      </form>
+      <!-- <button mat-stroked-button (click)="updateSelections()">Check Availiblity</button> -->
       <div class="title row space-between-center" *ngIf="carSlotsSelected.length">
         <div>Date</div>
         <div style="margin-left:6rem">Slots</div>
@@ -33,91 +39,45 @@
         </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" class="proceed" (click)="tab.selectedIndex = 2"
-      [disabled]="!carSlotsSelected.length">
-      Proceed further
-      <mat-icon>chevron_right</mat-icon>
-    </button>
 
-  </div> -->
+  </div>
   <div class="container">
     <mat-tab-group #tab class="stepper" [backgroundColor]="'#78b052'">
-      <mat-tab label="1. Choose Date">
-        <mat-accordion>
-          <mat-expansion-panel [expanded]="true" (opened)="panelOpenState = false" (closed)="panelOpenState = true">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Checking Dates
-              </mat-panel-title>
-              <!-- <mat-panel-description>
-                Personal Details
-              </mat-panel-description> -->
-            </mat-expansion-panel-header>
-            <form [formGroup]="checkingForm" class="column checking-form">
-              <mat-form-field appearance="outline">
-                <mat-label>Check in</mat-label>
-                <input autocomplete="off" formControlName="checkin" matInput (dateTimeChange)="getDate($event,'checkIn')" [min]="nowDate"
-                  [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time">
-                <owl-date-time #dt1></owl-date-time>
-                <mat-error *ngIf="checkingForm.get('checkin')?.hasError('required')">
-                  Check In date is required
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Check out</mat-label>
-                <input autocomplete="off" formControlName="checkout" matInput (dateTimeChange)="getDate($event,'checkOut')"
-                  [min]="checkingForm.get('checkin').value"  [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="Date Time">
-                <owl-date-time #dt2></owl-date-time>
-                <mat-error *ngIf="checkingForm.get('checkout')?.hasError('required')">
-                  Check Out date is required
-                </mat-error>
-              </mat-form-field>
-            </form>
-          </mat-expansion-panel>
-          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Customer Information
-              </mat-panel-title>
-              <!-- <mat-panel-description>
-              Currently I am {{panelOpenState ? 'open' : 'closed'}}
-            </mat-panel-description> -->
-            </mat-expansion-panel-header>
-            <form [formGroup]="infoForm" class="column info-form">
-              <mat-form-field appearance="outline">
-                <mat-label>First Name</mat-label>
-                <input formControlName="firstName" matInput placeholder="Name">
-                <mat-error *ngIf="infoForm.get('firstName')?.hasError('required')">
-                  first name is required
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Last Name</mat-label>
-                <input formControlName="lastName" matInput placeholder="Name">
-                <mat-error *ngIf="infoForm.get('lastName')?.hasError('required')">
-                  last name is required
-                </mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input formControlName="email" matInput placeholder="Email">
-                <mat-error *ngIf="infoForm.get('email')?.hasError('required')">
-                  Email is required
-                </mat-error>
-                <mat-error *ngIf="infoForm.get('email')?.hasError('email')">
-                  Email format is incorrect
-                </mat-error>
-              </mat-form-field>
-            </form>
-          </mat-expansion-panel>
-        </mat-accordion>
+      <mat-tab label="1. Personal Information">
+        <form [formGroup]="infoForm" class="column info-form">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input formControlName="firstName" matInput placeholder="Name">
+            <mat-error *ngIf="infoForm.get('firstName')?.hasError('required')">
+              first name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input formControlName="lastName" matInput placeholder="Name">
+            <mat-error *ngIf="infoForm.get('lastName')?.hasError('required')">
+              last name is required
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput placeholder="Email">
+            <mat-error *ngIf="infoForm.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="infoForm.get('email')?.hasError('email')">
+              Email format is incorrect
+            </mat-error>
+          </mat-form-field>
+        </form>
         <div>
-          <button mat-stroked-button color="primary" class="proceed-to-payment-btn" (click)="goToPayment()">PROCEED TO PAYMENT</button>
+          <button mat-stroked-button color="primary" [disabled]="!infoForm.valid" class="proceed-to-payment-btn" (click)="goToPayment()">PROCEED TO
+            PAYMENT</button>
         </div>
       </mat-tab>
 
       <mat-tab label="2. Pay & Proceed" disabled>
-        <app-payment [bookingData]="bookingData" [isDisabled]="!carSlotsSelected.length"></app-payment>
+        <app-payment [bookingData]="bookingData"></app-payment>
       </mat-tab>
     </mat-tab-group>
 

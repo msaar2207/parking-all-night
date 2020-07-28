@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="carosel">
+  <div [@fade]="playAnimation ? 'inactive' : 'active'" class="carosel" >
     <!-- <owl-carousel-o [options]="customOptions">
 
       <ng-container *ngFor="let slide of imageObject">
@@ -23,7 +23,7 @@
       </div>
     </div>
     <form class="form" [formGroup]="dateForm">
-      <div>
+      <div class="form-controls">
         <mat-form-field appearance="outline">
           <mat-label>Check in</mat-label>
           <input class="mat-font-color" autocomplete="off" formControlName="checkin" matInput
