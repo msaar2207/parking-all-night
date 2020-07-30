@@ -7,13 +7,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./thankyou.component.scss']
 })
 export class ThankyouComponent implements OnInit {
- //data:any;
- reservationId;
-  constructor(private _route:ActivatedRoute) { }
+  reservationId;
+  email: any;
+  constructor(private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this._route.queryParams.subscribe(params => {
-     this.reservationId = params.reservationId;
+      this.reservationId = params.recieptNumber;
+      this.email = params.email;
     });
 
   }

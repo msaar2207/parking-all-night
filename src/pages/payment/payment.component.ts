@@ -52,7 +52,12 @@ export class PaymentComponent implements OnInit {
     };
     this._dataService.createBooking(booking).subscribe((data: any) => {
       if (data.status) {
-        this._router.navigate(['thankyou'], { queryParams: { recieptNumber: this.bookingData.reservationId } });
+        this._router.navigate(['thankyou'], {
+          queryParams: {
+            recieptNumber: this.bookingData.reservationId,
+            email: this.bookingData.user.email
+          }
+        });
       }
     });
   }
