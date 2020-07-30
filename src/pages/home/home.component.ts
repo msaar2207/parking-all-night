@@ -40,12 +40,12 @@ export class HomeComponent implements OnInit {
       checkout: new FormControl('', [Validators.required]),
     });
     setInterval(() => { this.playAnimation = !this.playAnimation; }, 5000);
-    // this.dataService.getFuelPrice().subscribe((data: any) => {
-    //   console.log(data);
-    //   const city = data.result.find(d => d.name === 'Tennessee');
-    //   this.gasPrice = parseInt(city.gasoline);
-    //   this.dieselPrice = parseInt(city.diesel);
-    // });
+    this.dataService.getFuelPrice('gas').subscribe((data: any) => {
+      console.log(data);
+      // const city = data.result.find(d => d.name === 'Tennessee');
+      // this.gasPrice = parseInt(city.gasoline);
+      // this.dieselPrice = parseInt(city.diesel);
+    });
   }
 
   toggle() {

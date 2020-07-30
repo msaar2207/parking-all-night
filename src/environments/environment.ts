@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:3000/api/v1/'
+  url: 'http://localhost:3000/api/v1/',
+  Latitude: '83.9207',
+  Longitude: '35.9606',
+  distance: '200',
+  GasAPI: 'rfej9napna'
 };
 
 /*
