@@ -8,6 +8,7 @@ import {
 import { CreditCardValidators } from 'angular-cc-library';
 import { DataService } from 'src/providers/data.service';
 import { Router } from '@angular/router';
+import { UtilsService } from 'src/providers/utils.service';
 
 @Component({
   selector: 'app-payment',
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
 export class PaymentComponent implements OnInit {
   @Input() bookingData;
   ccForm: FormGroup = new FormGroup({});
-  constructor(private _fb: FormBuilder, private _dataService: DataService, private _router: Router) {
+  constructor(private _fb: FormBuilder, private _dataService: DataService, private _router: Router, private _utilService: UtilsService) {
     this.ccForm = this._fb.group({
       cardNumber: new FormControl('', [
         Validators.minLength(16),
@@ -41,6 +42,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void { }
 
   submit() {
+    this._utilService.loading = true;
     const booking = {
       user: this.bookingData.user,
       checkIn: this.bookingData.checkin,
@@ -52,6 +54,7 @@ export class PaymentComponent implements OnInit {
     };
     this._dataService.createBooking(booking).subscribe((data: any) => {
       if (data.status) {
+        this._utilService.loading = false;
         this._router.navigate(['thankyou'], {
           queryParams: {
             recieptNumber: this.bookingData.reservationId,

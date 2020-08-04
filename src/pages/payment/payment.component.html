@@ -24,7 +24,7 @@
       <form [formGroup]="ccForm"  class="column center-center payment-form">
         <mat-form-field appearance="outline">
           <mat-label>Card Number</mat-label>
-          <input type="tel" formControlName="cardNumber" matInput placeholder="Card Number">
+          <input maxlength="16" numbersOnly type="tel" formControlName="cardNumber" matInput placeholder="Card Number">
         <mat-error *ngIf="ccForm.get('cardNumber')?.hasError('required')">
           Card Number is required
         </mat-error>
@@ -52,7 +52,7 @@
           </mat-form-field>
           <mat-form-field class="cvv" appearance="outline">
             <mat-label>CVV</mat-label>
-            <input type="tel" formControlName="cvv" matInput placeholder="CVV">
+            <input maxlength="4" numbersOnly type="tel" formControlName="cvv" matInput placeholder="CVV">
             <mat-error *ngIf="ccForm.get('cvv')?.hasError('required')">
               CVV number is required
             </mat-error>

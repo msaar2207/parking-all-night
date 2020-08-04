@@ -6,11 +6,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
+import { OnlynumberDirective } from 'src/directives/limit-directive';
 
 
 
 @NgModule({
-  declarations: [PaymentComponent],
+  declarations: [PaymentComponent, OnlynumberDirective],
   imports: [
     CommonModule,
     ReactiveFormsModule,
