@@ -7,7 +7,9 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'booking', loadChildren: () => import('../pages/booking/booking.module').then(m => m.BookingModule) },
   { path: 'thankyou', loadChildren: () => import('../pages/thankyou/thankyou.module').then(m => m.ThankyouModule) },
-  { path: 'services', loadChildren: () => import('../pages/services/services.module').then(m => m.ServicesModule) }
+  { path: 'services', loadChildren: () => import('../pages/services/services.module').then(m => m.ServicesModule) },
+  { path: 'contactus', loadChildren: () => import('../pages/contactus/contactus.module').then(m => m.ContactusModule) },
+  { path: 'aboutus', loadChildren: () => import('../pages/aboutus/aboutus.module').then(m => m.AboutusModule) }
 ];
 
 @NgModule({
