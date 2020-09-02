@@ -9,6 +9,7 @@ import { FooterModule } from 'src/components/footer/footer.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DataService } from 'src/providers/data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { UtilsService } from 'src/providers/utils.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     HttpClientModule
   ],
-  providers: [DataService],
+  providers: [DataService, UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,51 +1,63 @@
-:host{
-  .container{
+:host {
+  .container {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    .w-150{
+
+    .w-150 {
       width: 170px;
     }
-    .w-100{
+
+    .w-100 {
       width: 100px;
     }
-    .row{
+
+    .row {
       margin-bottom: 10px;
-      &.row-total{
+
+      &.row-total {
         margin-top: 20px;
       }
     }
-    .font-price{
+
+    .font-price {
       font-size: 20px;
       font-weight: 500;
     }
-    .payment-reciept{
+
+    .payment-reciept {
       display: flex;
       flex-direction: column;
       align-items: baseline;
     }
-    .payment-form{
+
+    .payment-form {
 
       text-align: center;
-      mat-form-field{
+
+      mat-form-field {
         width: 100%;
       }
-      .row{
+
+      .row {
         width: 100%;
-        .expiry{
+
+        .expiry {
           max-width: 150px;
         }
-        .cvv{
+
+        .cvv {
           max-width: 80px;
           margin-left: 10px;
         }
       }
-      .pay-now-btn{
-        width: 100%;
-        color: #78b052;
-      }
+    }
+
+    .pay-now-btn {
+      width: 100%;
+      color: #78b052;
+      margin-top: 20px;
     }
   }
 
 }
-

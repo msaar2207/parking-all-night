@@ -21,10 +21,10 @@
     </div>
     <div style="margin-top: 1rem">
       <h1>Payment Information</h1>
-      <form [formGroup]="ccForm"  class="column center-center payment-form">
+      <!-- <form [formGroup]="ccForm"  class="column center-center payment-form">
         <mat-form-field appearance="outline">
           <mat-label>Card Number</mat-label>
-          <input type="tel" formControlName="cardNumber" matInput placeholder="Card Number">
+          <input maxlength="16" numbersOnly type="tel" formControlName="cardNumber" matInput placeholder="Card Number">
         <mat-error *ngIf="ccForm.get('cardNumber')?.hasError('required')">
           Card Number is required
         </mat-error>
@@ -52,13 +52,19 @@
           </mat-form-field>
           <mat-form-field class="cvv" appearance="outline">
             <mat-label>CVV</mat-label>
-            <input type="tel" formControlName="cvv" matInput placeholder="CVV">
+            <input maxlength="4" numbersOnly type="tel" formControlName="cvv" matInput placeholder="CVV">
             <mat-error *ngIf="ccForm.get('cvv')?.hasError('required')">
               CVV number is required
             </mat-error>
           </mat-form-field>
         </div>
         <button mat-stroked-button color="primary" class="pay-now-btn" [disabled]="!this.ccForm.valid" (click)="submit()">Pay Now</button>
-      </form>
+      </form> -->
+      <stripe-card #stripeCard (catch)="onStripeError($event)" [(invalid)]="invalidError" (cardMounted)="cardReady"
+        (tokenChange)="setStripeToken($event)" (sourceChange)="setStripeSource($event)"></stripe-card>
+
+      <button mat-stroked-button color="primary" class="pay-now-btn" (click)="stripeCard.createToken({name:( bookingData?.user?.firstName + bookingData?.user?.lastName || 'Aun Rizvi')   })">Pay Now</button>
+      `
+
   </div>
 </div>
