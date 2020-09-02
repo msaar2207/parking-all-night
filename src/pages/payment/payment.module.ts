@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { OnlynumberDirective } from 'src/directives/limit-directive';
-
+import { StripeModule } from 'stripe-angular'
 
 
 @NgModule({
@@ -17,10 +17,11 @@ import { OnlynumberDirective } from 'src/directives/limit-directive';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    StripeModule.forRoot('pk_test_51HMY9KLyeWbwLfQGb2CD0vpSa9LoqDs0HAkaHuPKLiZGIzF4EpE6swvaxhvzk2oN9Gvw1pOp3YqXowJXn9Auctkw00NirS3Ox1')
 
   ],
-  exports:[
+  exports: [
     PaymentComponent
   ]
 })

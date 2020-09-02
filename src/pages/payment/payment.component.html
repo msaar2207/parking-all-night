@@ -21,7 +21,7 @@
     </div>
     <div style="margin-top: 1rem">
       <h1>Payment Information</h1>
-      <form [formGroup]="ccForm"  class="column center-center payment-form">
+      <!-- <form [formGroup]="ccForm"  class="column center-center payment-form">
         <mat-form-field appearance="outline">
           <mat-label>Card Number</mat-label>
           <input maxlength="16" numbersOnly type="tel" formControlName="cardNumber" matInput placeholder="Card Number">
@@ -59,6 +59,12 @@
           </mat-form-field>
         </div>
         <button mat-stroked-button color="primary" class="pay-now-btn" [disabled]="!this.ccForm.valid" (click)="submit()">Pay Now</button>
-      </form>
+      </form> -->
+      <stripe-card #stripeCard (catch)="onStripeError($event)" [(invalid)]="invalidError" (cardMounted)="cardReady"
+        (tokenChange)="setStripeToken($event)" (sourceChange)="setStripeSource($event)"></stripe-card>
+
+      <button mat-stroked-button color="primary" class="pay-now-btn" (click)="stripeCard.createToken({name:( bookingData?.user?.firstName + bookingData?.user?.lastName || 'Aun Rizvi')   })">Pay Now</button>
+      `
+
   </div>
 </div>
